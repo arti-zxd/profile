@@ -1,0 +1,135 @@
+<!-- <div class="form-container">
+  <div class="padding-area">
+    <div class="card-area">
+      <div class="content-area">
+        <div class="img-section">
+          <img class="left-image" src="/assets/Online security.png" />
+        </div>
+        <div class="right-section">
+        <form class="login-form">
+            <div class="usmart-logo-section">
+          <img class="logo-usmart" src="/assets/uSmartLogo.png" />
+          </div>
+          <div class="label-area">
+          <label class="login-label">Welcome to uSMART Portal.</label>
+          </div>
+          <div class="input-label-area">
+          <label class="input-label">Username</label>
+          </div>
+          <div class="input-area">
+          <input type="text" placeholder="Enter your username" />
+          </div>
+          <div class="input-label-area">
+          <label class="input-label">Password</label>
+          </div>
+          <div class="input-area">
+          <input type="password" placeholder="Enter Your password">
+          </div>
+        </form>
+        <div class="footer-area">
+            <footer>
+                <button class="login-btn">Login
+                    </button>
+            </footer>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<body>
+  <div class="form-container">
+    <div class="card-area">
+      <div class="content-area">
+        <div class="img-section">
+          <img
+            class="left-image"
+            src="/assets/Online security.png"
+            alt="Security Image"
+          />
+        </div>
+        <div class="right-section">
+          <form class="login-form" [formGroup]="loginForm">
+            <div class="usmart-logo-section">
+              <!-- <img class="logo-usmart" src="/assets/uSmartLogo.png" alt="uSmart Logo" /> -->
+              <img #usmartimg src="/assets/uSmartLogo.png" alt="uSmart Logo" />
+            </div>
+            <div class="label-area">
+              <label class="login-label">Welcome to uSMART Portal.</label>
+            </div>
+            <div class="input-label-area">
+              <label class="input-label"
+                >Username<span class="font-red m-l-2">*</span></label
+              >
+              <input
+                type="text"
+                placeholder="Enter your username"
+                formControlName="username"
+              />
+            </div>
+            <div
+              *ngIf="
+                loginForm.get('username')?.invalid &&
+                loginForm.get('username')?.touched
+              "
+            >
+              <small class="error">This field is requied</small>
+            </div>
+            <div class="input-label-area">
+              <label class="input-label"
+                >Password<span class="font-red m-l-2">*</span></label
+              >
+              <input
+                type="password"
+                placeholder="Enter your password"
+                formControlName="password"
+              />
+            </div>
+            <div class="input-label-area">
+              <label class="input-label"> Work Email Id</label>
+              <input
+                type="email"
+                placeholder="Enter your work email-id"
+                formControlName="workEmail"
+              />
+            </div>
+            <div class="errormsg">
+              <small
+                class="error"
+                *ngIf="loginForm.get('workEmail')?.hasError('email')"
+              >
+                Please enter a valid email address.
+              </small>
+              <small
+                class="error"
+                *ngIf="loginForm.get('workEmail')?.hasError('pattern')"
+              >
+                The email address must not be from Gmail or Yahoo and must be a
+                valid domain.
+              </small>
+            </div>
+
+            <div class="input-label-area">
+              <label class="input-label"> personal Email Id</label>
+              <input
+                type="email"
+                placeholder="Enter your Personal email-id"
+                formControlName="personalEmail"
+              />
+            </div>
+            <div class="footer-area">
+              <button
+                type="submit"
+                [disabled]="loginForm.invalid"
+                class="login-btn"
+                (click)="login()"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
